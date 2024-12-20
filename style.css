@@ -1,0 +1,588 @@
+/* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #1e1e2f; /* Dashboard background */
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* Dashboard Grid */
+.dashboard {
+  display: grid;
+  grid-template-columns: .5fr 3fr 1.5fr; /* Sidebar | Main | Right Sidebar */
+  grid-template-rows: auto;
+  gap: 1rem;
+  width: 90%;
+  height: 95%;
+}
+
+/* Left Sidebar */
+.sidebar {
+  background: #2a2a40;
+  padding: 1rem;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.sidebar ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.sidebar li {
+  text-align: center;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+/* Main Content */
+.main-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  height: 95vh;
+}
+
+.header {
+  position: relative;
+  width: 100%;  /* Full width of parent */
+   /* Center children horizontally */
+}
+
+.search-container {
+  position: relative;
+  width: 100%;
+}
+
+.search-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.search-results {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: #2a2a40;
+    border-radius: 8px;
+    margin-top: 8px;
+    max-height: 300px;
+    overflow-y: auto;
+    z-index: 1000;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: none; /* Hidden by default */
+}
+
+/* Show results when they contain content */
+.search-results:not(:empty) {
+    display: block;
+}
+
+.search-result {
+    padding: 12px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.search-result:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.search-result .city {
+    font-size: 14px;
+    color: #fff;
+}
+
+.loading, .no-results, .error, .info {
+    padding: 12px;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.error {
+    color: #ff6b6b;
+}
+
+.search-input {
+  width: 100%;  /* Full width of parent */
+  padding: 12px 16px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  font-size: 16px;
+  box-sizing: border-box;  /* Include padding in width calculation */
+}
+
+.header input {
+  width: 100%;
+  padding: 10px 15px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+.header input::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.header input:focus {
+  outline: none;
+  border-color: rgba(255, 255, 255, 0.3);
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Optional: Style for focused state */
+.header input.focused {
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+}
+
+.current-weather {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+  height: 40vh;
+}
+
+.weather-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+}
+
+.location-conditions {
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+}
+
+.temperature {
+  font-size: 2.5rem;
+  font-weight: bold;  /* Adjust size as needed */
+}
+
+.weather-icon {
+  width: 128px;
+  height: auto;
+  object-fit: contain;
+  display: block;
+  max-width: 100%;
+  transition: all 0.3s ease;
+}
+
+/* Optional: Different sizes for different screens */
+@media (max-width: 768px) {
+  .weather-icon {
+    width: 64px;
+  }
+}
+
+@media (min-width: 769px) {
+  .weather-icon {
+    width: 128px;
+  }
+}
+
+/* If you need different colors for different weather conditions */
+.sunny-icon {
+  fill: #FFD700;  /* Golden for sun */
+}
+
+.cloudy-icon {
+  fill: #D1D1D6;  /* Gray for clouds */
+}
+
+.rainy-icon {
+  fill: #4A90E2;  /* Blue for rain */
+}
+
+.today-forecast {
+  padding-top: 2.5rem;
+  padding-bottom: 2.5rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  background: #2a2a40;
+  border-radius: 10px;
+  height: 40vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.section-title {
+  font-size: 1.125rem;  /* 18px ÷ 16px = 1.125rem */
+  font-weight: 600;
+  letter-spacing: -0.6px;
+  color: #AEAEB2;
+  margin-bottom: 2rem;
+}
+
+.hourly-forecast {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 0;
+}
+
+.hour-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 1rem;
+  padding: 1rem;
+  position: relative;
+}
+
+/* Ensure each child element is also centered */
+.hour-card > * {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Add border between cards except last one */
+.hour-card:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 10%;
+  height: 80%;
+  width: 1px;
+  background-color: #D1D1D6;
+}
+
+.hour-card .time {
+  font-size: 1.125rem;  /* 18px */
+  font-weight: 600;
+  color: #AEAEB2;
+}
+
+.hour-card .weather-icon {
+  width: 32px;  /* Adjust size as needed */
+  height: 32px;
+  
+}
+
+.hour-card .temp {
+  font-weight: 500;
+  font-size: 2rem;
+}
+
+/* Air Conditions */
+.air-conditions {
+  padding-top: 2.5rem;
+  padding-bottom: 2.5rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  background: #2a2a40;
+  border-radius: 10px;
+  height: 40vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.air-conditions .section-title {
+  font-size: 1.125rem;  /* 18px */
+  font-weight: 600;
+  color: #AEAEB2;
+  margin-bottom: 1rem;
+}
+
+.conditions-grid {
+  display: flex;
+  justify-content: space-between;  
+  gap: 8rem;
+  width: 100%;
+  margin-top: 1.5rem;
+}
+
+.conditions-column {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  flex: 1;
+  padding-left: 2.5rem;
+}
+
+.condition-card {
+  display: flex;
+  align-items: flex-start;  /* Aligns icon to top */
+  gap: 1rem;
+}
+
+.condition-card img {
+  width: 24px;  /* Increased from 16px */
+  height: 24px;
+}
+
+.condition-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.condition-card h6 {
+  color: #AEAEB2;
+  font-size: 0.875rem;  /* 14px */
+  font-weight: 500;
+}
+
+.condition-card .value {
+  font-size: 1.125rem;  /* 18px */
+  font-weight: 600;
+}
+
+.condition-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.condition-header img {
+  width: 16px;  /* Adjust size as needed */
+  height: 16px;
+}
+
+.condition-card .value {
+  font-size: 2rem;  /* 32px ÷ 16px = 2rem */
+  font-weight: 600;
+  letter-spacing: -1px;
+  color: #D1D1D6;
+}
+
+/* Right Sidebar */
+.right-sidebar {
+  padding: 1.5rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: #2a2a40;
+  border-radius: 10px;
+}
+
+.weekly-forecast {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: 3rem;
+  margin-top: 4rem;
+}
+
+.forecast-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; 
+  padding-bottom: 2.5rem; 
+}
+
+.weather {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex: 1;  /* Take up available space */
+  justify-content: center;  /* Center the weather info */
+}
+
+.weather img {
+  width: 24px;
+  height: 24px;
+}
+
+.day {
+  min-width: 80px;  /* Add minimum width to keep day names aligned */
+}
+
+.temp {
+  min-width: 80px;  /* Add minimum width to keep temperatures aligned */
+  text-align: right;  /* Align temperatures to the right */
+}
+
+/* Optional: if you want to ensure the weather condition text aligns nicely */
+.weather span {
+  min-width: 60px;  /* Adjust based on your longest weather condition */
+}
+
+/* Optional: Add borders between rows */
+.forecast-row {
+  border-bottom: 1px solid rgba(174, 174, 178, 0.2);
+}
+
+.app-title {
+  text-align: center;
+  font-size: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.powered-by {
+  text-align: center;
+  font-size: .8rem;
+}
+
+h1 {
+  font-size: 3.5rem;  
+}
+
+h2 {
+  font-size: 2.5rem;
+}
+
+.weather-condition {
+  color: #8E8E93;
+}
+
+input[type="text"] {
+  background-color: #2a2a40;
+  color: white;  /* Adding white text color for better contrast */
+  padding: 0.75rem 1rem;  /* Optional: adds some padding */
+  border: none;  /* Optional: removes default border */
+  border-radius: 0.5rem;  /* Optional: adds rounded corners */
+}
+
+/* Optional: Style the placeholder text */
+input[type="text"]::placeholder {
+  color: rgba(255, 255, 255, 0.6);  /* Semi-transparent white for placeholder */
+}
+
+/* Option 1: Change all weather icons */
+.wi {
+    color: #ffffff;  /* White */
+    /* or */
+    color: #FFD700;  /* Golden */
+    /* or */
+    color: #87CEEB;  /* Sky Blue */
+}
+
+/* Option 2: Specifically target the weather icon in your weather display */
+.weather-icon {
+    font-size: 100px;  /* Adjust size as needed */
+    color: #D1D1D6;  /* Light gray */
+}
+
+/* Option 3: Different colors for different weather conditions */
+.wi-day-sunny {
+    color: #FFD700;  /* Golden for sun */
+}
+
+.wi-rain {
+    color: #4A90E2;  /* Blue for rain */
+}
+
+.wi-cloud {
+    color: #D1D1D6;  /* Gray for clouds */
+}
+
+
+
+/* Or even more specific */
+/* section.current-weather i.wi.wi-day-sunny.weather-icon {
+    font-size: 10rem !important;
+    color: #FFD700 !important;
+} */
+
+.error-message {
+    color: #ff4444;
+    padding: 10px;
+    margin: 10px 0;
+    text-align: center;
+    background-color: rgba(255, 68, 68, 0.1);
+    border-radius: 4px;
+}
+
+.error-state {
+    opacity: 0.7;
+}
+
+.search-container {
+  min-width: 100%;
+}
+
+.search-input {
+    width: 100%;
+    padding: 10px 15px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.search-input::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.search-input:focus {
+    outline: none;
+    border-color: rgba(255, 255, 255, 0.3);
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.search-results {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    margin-top: 8px;
+    z-index: 1000;
+}
+
+.search-wrapper {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+}
+
+.search-button {
+  background: #2a2a40;
+  color: #fff;
+  padding: .875rem 1.5rem;
+  border-radius: 10px;
+  border: none;
+}
+
+
+
+
+
+/* Optional: hover effect */
+.search-button:hover {
+  opacity: 0.8;
+}
+
+.loading {
+    text-align: center;
+    padding: 20px;
+    color: rgba(255, 255, 255, 0.8);
+}

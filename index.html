@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather App</title>
+    <link rel="stylesheet" href="css/weather-icons.css">
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <div class="dashboard">
+      <!-- Sidebar -->
+      <nav class="sidebar">
+        <div class="app-title">
+          <img src="/weather-logo.svg" alt="Weather App Logo" />
+          <span class="app-title">WeatherApp</span>
+        </div>
+        <!-- <div class="powered-by">
+          Powered by OpenWeatherMap API
+        </div> -->
+      </nav>
+    
+      <!-- Main Content -->
+      <main class="main-content">
+        <header class="header">
+          <div class="search-container">
+            <div class="search-wrapper">
+              <input 
+                  type="text" 
+                  class="search-input" 
+                  placeholder="Search for a city..."
+                  aria-label="Search for a city"
+              >
+              <button class="search-button" aria-label="Search">
+                Search
+              </button>
+            </div>
+            <div class="search-results"></div>
+          </div>
+        </header>
+        <section class="current-weather">
+          <div class="weather-info">
+            <div class="location-conditions">
+              <h2>Madrid</h2>
+              <p class="weather-condition">Sunny</p>
+            </div>
+            <div class="temperature">
+              <span></span>
+            </div>
+          </div>
+          <img src="tomorrow-weather-codes/V2_icons/large/png/clear_day.png" alt="Weather" class="weather-icon">
+        </section>
+        <section class="today-forecast">
+          <div class="today-forecast-content">
+            <h5 class="section-title">TODAY'S FORECAST</h5>
+            <div class="hourly-forecast">
+              <div class="hour-card">
+                <span class="time">6:00 AM</span>
+                <img src="sun-icon.png" alt="Sunny" class="weather-icon" />
+                <span class="temp">25°</span>
+              </div>
+              <div class="hour-card">
+                <span class="time">7:00 AM</span>
+                <img src="sun-icon.png" alt="Sunny" class="weather-icon" />
+                <span class="temp">26°</span>
+              </div>
+              <div class="hour-card">
+                <span class="time">8:00 AM</span>
+                <img src="sun-icon.png" alt="Sunny" class="weather-icon" />
+                <span class="temp">27°</span>
+              </div>
+              <div class="hour-card">
+                <span class="time">9:00 AM</span>
+                <img src="sun-icon.png" alt="Sunny" class="weather-icon" />
+                <span class="temp">28°</span>
+              </div>
+              <div class="hour-card">
+                <span class="time">10:00 AM</span>
+                <img src="sun-icon.png" alt="Sunny" class="weather-icon" />
+                <span class="temp">29°</span>
+              </div>
+              <div class="hour-card">
+                <span class="time">11:00 AM</span>
+                <img src="sun-icon.png" alt="Sunny" class="weather-icon" />
+                <span class="temp">30°</span>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="air-conditions">
+          <div class="air-conditions-content">
+            <h5 class="section-title">AIR CONDITIONS</h5>
+            <div class="conditions-grid">
+              <div class="conditions-column">
+                <div class="condition-card">
+                  <img src="/real-feel.svg" alt="Real Feel" />
+                  <div class="condition-info">
+                    <h6>Real Feel</h6>
+                    <span class="value">30°</span>
+                  </div>
+                </div>
+                <div class="condition-card">
+                  <img src="/uv-index.svg" alt="UV Index" />
+                  <div class="condition-info">
+                    <h6>UV Index</h6>
+                    <span class="value">3</span>
+                  </div>
+                </div>
+              </div>
+              <div class="conditions-column">
+                <div class="condition-card">
+                  <img src="/wind-speed.svg" alt="Wind" />
+                  <div class="condition-info">
+                    <h6>Wind</h6>
+                    <span class="value">0.2 km/h</span>
+                  </div>
+                </div>
+                <div class="condition-card">
+                  <img src="/humidity.svg" alt="Humidity" />
+                  <div class="condition-info">
+                    <h6>Humidity</h6>
+                    <span class="value">48%</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+    
+      <!-- Right Sidebar -->
+      <aside class="right-sidebar">
+        <h5 class="section-title">7-DAY FORECAST</h5>
+        <div class="weekly-forecast">
+          <div class="forecast-row">
+            <span class="day">Today</span>
+            <div class="weather">
+              <img src="/sun-icon.png" alt="Sunny" />
+              <span>Sunny</span>
+            </div>
+            <span class="temp">36°/22°</span>
+          </div>
+          <div class="forecast-row">
+            <span class="day">Tomorrow</span>
+            <div class="weather">
+              <img src="/sun-icon.png" alt="Sunny" />
+              <span>Sunny</span>
+            </div>
+            <span class="temp">35°/21°</span>
+          </div>
+          <div class="forecast-row">
+            <span class="day">Wednesday</span>
+            <div class="weather">
+              <img src="/sun-icon.png" alt="Sunny" />
+              <span>Sunny</span>
+            </div>
+            <span class="temp">34°/20°</span>
+          </div>
+          <div class="forecast-row">
+            <span class="day">Thursday</span>
+            <div class="weather">
+              <img src="/sun-icon.png" alt="Sunny" />
+              <span>Sunny</span>
+            </div>
+            <span class="temp">33°/21°</span>
+          </div>
+          <div class="forecast-row">
+            <span class="day">Friday</span>
+            <div class="weather">
+              <img src="/sun-icon.png" alt="Sunny" />
+              <span>Sunny</span>
+            </div>
+            <span class="temp">30°/19°</span>
+          </div>
+          <div class="forecast-row">
+            <span class="day">Saturday</span>
+            <div class="weather">
+              <img src="/sun-icon.png" alt="Sunny" />
+              <span>Sunny</span>
+            </div>
+            <span class="temp">32°/20°</span>
+          </div>
+          <div class="forecast-row">
+            <span class="day">Sunday</span>
+            <div class="weather">
+              <img src="/sun-icon.png" alt="Sunny" />
+              <span>Sunny</span>
+            </div>
+            <span class="temp">33°/21°</span>
+          </div>
+        </div>
+      </aside>
+    </div>
+    
+    <script type="module" src="/main.js"></script>
+    <script src="config.js"></script>
+    <script src="weatherService.js"></script>
+    <script src="searchService.js"></script>
+  </body>
+</html>
